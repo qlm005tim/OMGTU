@@ -1,13 +1,45 @@
 using System;
-class HelloWorld {
-  static void Main() {
-    int a=0, b=3;
-    a=Convert.ToInt32(Console.ReadLine());
-    b=Convert.ToInt32(Console.ReadLine());
-    a=a+b
-    b=a-b
-    a=a-b
-    Console.WriteLine(a);
-    Console.WriteLine(b);
+class HelloWorld
+{
+  static void Main ()
+  {
+    int a = 0, b = 3;
+      a = Convert.ToInt32 (Console.ReadLine ());
+      b = Convert.ToInt32 (Console.ReadLine ());
+      a = a + b;
+      b = a - b;
+      a = a - b;
+      Console.WriteLine (a);
+      Console.WriteLine (b);
+  }
+}
+
+using System;
+class HelloWorld
+{
+  static void Main ()
+  {
+    int k = 0, hours = 0, ost_aft_hours = 0, minutes = 0, seconds = 0;
+      k = Convert.ToInt32 (Console.ReadLine ());
+      hours = k / 3600;
+      ost_aft_hours = k - hours * 3600;
+      minutes = ost_aft_hours / 60;
+      seconds = ost_aft_hours - minutes * 60;
+      Console.WriteLine (hours);
+      Console.WriteLine (minutes);
+      Console.WriteLine (seconds);
+  }
+}
+
+using System;
+class HelloWorld
+{
+  static void Main ()
+  {
+    int a = 0, b = 0;
+      a = Convert.ToInt32 (Console.ReadLine ());
+      b = Convert.ToInt32 (Console.ReadLine ());
+      Console.WriteLine ((a - Math.Abs (a - b) + b) / 2);
+      Console.WriteLine ((a + Math.Abs (a - b) + b) / 2);
   }
 }
