@@ -1,0 +1,15 @@
+k=2
+l=7
+n=10
+m=5
+a=0
+for i in range(k):
+  a=s+2*(l+m+n)+(k-1)*m
+print(s)
+
+k=1
+l=7
+n=10
+m=5
+a=k*((2*(l+m+n)+(k-1)*m)
+print(a)
