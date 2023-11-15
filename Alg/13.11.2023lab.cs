@@ -1,62 +1,56 @@
 using System;
-
 class Program
 {
     static int[,] CreateArray(int m, int n)//функция для создания массива
     {
         int[,] array = new int[m, n];
-
-        Console.WriteLine($"Введитe лементы массива {m}*{n}:");
-
+        Console.WriteLine($"Введитe элементы массива {m}*{n}:");
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
             {
                 Console.Write($"злемент [{i + 1}, {j + 1}]: ");
                 array[i, j] = int.Parse(Console.ReadLine());
-
             }
-
         }
-
         return array;
     }
 
-    static int[] FindMaxNegativeElements(int[,] array)//функция поиска максимального отриц
+    static int[] FindMaxNegElements(int[,] array)//функция поиска максимального отриц
     {
         int rows = array.GetLength(0);
         int cols = array.GetLength(1);
-        int[] maxNegativeElements = new int[rows];
+        int[] maxNegElements = new int[rows];
 
         for (int i = 0; i < rows; i++)
         {
 
-            int maxNegative = int.MinValue;
-            bool foundNegative = false;
+            int maxNeg = int.MinValue;
+            bool foundNeg = false;
 
             for (int j = 0; j < cols; j++)
             {
 
-                if (array[i, j] < 0 && array[i, j] > maxNegative)
+                if (array[i, j] < 0 && array[i, j] > maxNeg)
                 {
-                    maxNegative = array[i, j];
-                    foundNegative = true;
+                    maxNeg = array[i, j];
+                    foundNeg = true;
                 }
             }
-            if (foundNegative)
+            if (foundNeg)
             {
-                maxNegativeElements[i] = maxNegative;
+                maxNegElements[i] = maxNeg;
             }
             else
             {
-                // Если нет отрицательных элементов в строке, устанавливаем значение в maxNegativeElements[i] = 0
-                maxNegativeElements[i] = 0;
+                
+                maxNegElements[i] = 0;
             }
         }
-        return maxNegativeElements;
+        return maxNegElements;
     }
 
-    static int[] CountDifferentElements(int[,] array)
+    static int[] CountDifElements(int[,] array)
     {
         int rows = array.GetLength(0);
         int cols = array.GetLength(1);
@@ -72,7 +66,7 @@ class Program
                 }
             }
         }
-        // Считаем количество отличных элементов в каждом столбце
+        
         int[] res = new int[cols * 2];
         for (int j = 0; j < cols; j++)
         {
@@ -84,91 +78,74 @@ class Program
                     count++;
                 }
             }
-            // Записываем номер столбца и количество отличных элементов в результат 
+             
             res[j * 2] = j + 1;
             res[j * 2 + 1] = count;
         }
         return res;
     }
 
-    /*static int[][] ReplaceRowWithMaxEvenSum(int[][] matrix)
+    static int[,] ReplaceRow(int[,] array)
+    {
+        int rows = array.GetLength(0);
+        int cols = array.GetLength(1);
+        int maxEvenSum = 0;
 
-    if (matrix == null || matrix. Length == 0 || matrix[0].Length == 0)
+        for (int i = 0; i < rows; i++)
+        {
+            int rowEvenSum = 0;
+            for (int j = 0; j < cols; j++)
+            {
+                if (array[i, j] % 2 == 0)
+                {
+                    rowEvenSum += array[i, j];
+                }
+            }
 
-{
+            if (rowEvenSum > maxEvenSum)
+            {
+                maxEvenSum = rowEvenSum;
+            }
+        }
 
-// Обработка некорректных входных данных, например, пустой или нулевой массив return matrix;
+        for (int i = 0; i < rows; i++)
+        {
+            int rowEvenSum = 0;
+            for (int j = 0; j < cols; j++)
+            {
+                if (array[i, j] % 2 == 0)
+                {
+                    rowEvenSum += array[i, j];
+                }
+            }
+            if (rowEvenSum == maxEvenSum)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    array[i, j] = 1;
+                }
+            }
+        }
+        return array;
+    }
 
-}
-
-int maxEvenSum int.MinValue; =
-
-int rowIndex = - 1 ;
-
-// Находим индекс строки с наибольшей суммой четных элементов for (int i = 0 i < matrix. Length; i++) {
-
-int evenSum = 0
-
-for (int j = 0 j < matrix[i].Length; j++)
-
-{
-
-if (matrix[i][j] % 2 ==0
-
-{
-
-evenSum += matrix[i][j];
-
-}
-
-}
-
-if (evenSum > maxEvenSum)
-maxEvenSum = evenSum;
-
-rowIndex = i ,
-
-}
-
-}
-
-if (rowIndex l = - 1 )
-
-f
-
-// Заменяем все элементы найденной строки на единицы for (int j = 0 j < matrix[rowIndex].Length; j++)
-
-matrix[rowIndex I[j] = 1
-
-}
-
-}
-
-return matrix;
-
-}
-
-static void PrintMatrix(int[][] matrix)
-
-{ foreach (var row in matrix) foreach (var element in row) { } Console.Write(element + " "); Console.WriteLine(); } \ ^ */
 
     static void Main()
     {
         Console.WriteLine("Введите количество строк (М):");//ввод размерности
         int m = int.Parse(Console.ReadLine());
-
         Console.WriteLine("Введите количество столбцов (N):");
         int n = int.Parse(Console.ReadLine());
 
         int[,] array = CreateArray(m, n);//создание двумерного массива
 
-        int[] maxNegativeElements = FindMaxNegativeElements(array);//вызов функции
+        int[] maxNegElements = FindMaxNegElements(array);//вызов функции
         Console.WriteLine("Максимальные отрицательные элементы в каждой строке:");
-        for (int i = 0; i < maxNegativeElements.Length; i++)
+        for (int i = 0; i < maxNegElements.Length; i++)
         {
-            if (maxNegativeElements[i]!=0)
+            if (maxNegElements[i]!=0)
             {
-                Console.WriteLine($"str {i + 1}: {maxNegativeElements[i]}");
+                Console.WriteLine($"str {i + 1}: {maxNegElements[i]}");
             }
             else
             {
@@ -176,7 +153,7 @@ static void PrintMatrix(int[][] matrix)
             }
         }
             
-        int[] result = CountDifferentElements(array);//вызов функции
+        int[] result = CountDifElements(array);//вызов функции
         Console.WriteLine("Столбец\tКоличество отличных элементов");
 
         for (int i = 0; i < result.Length; i += 2)
@@ -184,10 +161,15 @@ static void PrintMatrix(int[][] matrix)
             Console.WriteLine($"{result[i]}\t{result[i + 1]}");
         }
 
-        /*matrix = ReplaceRowWithMaxEvenSum(array);
-
-        Console.WriteLine("Mampuua после замены: "); PrintMatrix(matrix);*/
-
+        int[,] newArray = ReplaceRow(array);//вызов функции
+        Console.WriteLine("Измененный массив:");
+        for (int i = 0; i < newArray.GetLength(0); i++)
+        {
+            for (int j = 0; j < newArray.GetLength(1); j++)
+            {
+                Console.Write(newArray[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
     }
-
 }
