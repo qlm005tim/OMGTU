@@ -1,4 +1,3 @@
-import math
 n=int(input())
 def f(n):
     if n<3:
