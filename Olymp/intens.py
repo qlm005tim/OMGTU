@@ -1,31 +1,34 @@
-nach=str(input())
-kon=str(input())
-p=int(input())
-nd=int(nach.split('.')[0])
-nm=int(nach.split('.')[1])
-ny=int(nach.split('.')[2])
-kd=int(kon.split('.')[0])
-km=int(kon.split('.')[1])
-ky=int(kon.split('.')[2])
+f=open('input.txt')
+nach=f.readline()#дата начала
+kon=f.readline()#дата конца
+p=int(f.readline())#количество производства в первый день
+f.close()
 
-def year(y):
+nd=int(nach.split('.')[0])#день начала
+nm=int(nach.split('.')[1])#месяц начала
+ny=int(nach.split('.')[2])#год начала
+kd=int(kon.split('.')[0])#день конца
+km=int(kon.split('.')[1])#месяц конца
+ky=int(kon.split('.')[2])#год конца
+
+def year(y):#функция создает массив из месяцев для високосного и невисокосного года
     if y%4==0:
         return [0,31,29,31,30,31,30,31,31,30,31,30,31]
     else:
         return [0,31,28,31,30,31,30,31,31,30,31,30,31]
 
-def count_vis(ny,ky):
+def count_vis(ny,ky):#функция считает количество високосных лет в диапазоне
     count=0
     for i in range(ny,ky):
         if i%4==0:
             count+=1
     return count        
 
-n=0        
-if ky==ny and nm!=km: n=(year(ny)[nm]-nd)+sum(year(ny)[nm+1:km])+kd+1
-elif ky==ny and nm==km: n=kd-nd+1
+n=0#длительность периода        
+if ky==ny and nm!=km: n=(year(ny)[nm]-nd)+sum(year(ny)[nm+1:km])+kd+1#год начала и конца одинаковый, разные месяцы-часть первого месяца прибавляется к полным месяцам и к части последнего
+elif ky==ny and nm==km: n=kd-nd+1#даты начала и конца в одном году и в одном месяце-разность дат с учетом первого дня
 elif ky!=ny: 
-    if ky==ny+1: n=(year(ny)[nm]-nd+1)+sum(year(ny)[nm+1:])+sum(year(ky)[:km])+kd
-    else: n=(year(ny)[nm]-nd+1)+sum(year(ny)[nm+1:])+(365*(ky-ny-1)+count_vis(ny+1,ky))+sum(year(ky)[:km])+kd
-print(n)
-print(0.5*n*(2*p+(n-1)*1))
+    if ky==ny+1: n=(year(ny)[nm]-nd+1)+sum(year(ny)[nm+1:])+sum(year(ky)[:km])+kd#даты в соседних годах-часть первого месяца+остаток года+начало следующего года+часть последнего месяца
+    else: n=(year(ny)[nm]-nd+1)+sum(year(ny)[nm+1:])+(365*(ky-ny-1)+count_vis(ny+1,ky))+sum(year(ky)[:km])+kd#часть первого месяца+остаток года+полные года+часть последного года+часть последного месяца
+
+print((2*p+(n-1)*1)//2*n)#сумма арифметической прогрессии
