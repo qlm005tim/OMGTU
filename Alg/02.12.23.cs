@@ -3,17 +3,17 @@ using System;
         public string Name;
         public int Year;
         public string[] Owners;
-        public int[] Healthcheckyears;
+        public int[] TOyears;
         public string Color;
-        public int Engnum;
+        public int Engnumber;
 
-        public Car(string name, int year, string[] owners, int[] healthcheckyears, string color, int engnum) {
+        public Car(string name, int year, string[] owners, int[] toyears, string color, int engnumber) {
             this.Name = name;
             this.Year = year;
             this.Owners = owners;
-            this.Healthcheckyears = healthcheckyears;
+            this.TOyears = toyears;
             this.Color = color;
-            this.Engnum = engnum;
+            this.Engnumber = engnumber;
 
         }
     }
@@ -21,50 +21,50 @@ using System;
     class Program {
 
         static void Main(string[] args) {
-            Car[] CarArray = new Car[5] {
-                new Car("mazda", 1999, new string[] {
-                        "Pavel",
-                        "Hannah"
+            Car[] CarArr = new Car[5] {
+                new Car("mersedes", 2003, new string[] {
+                        "Bob",
+                        "Rachel"
                         }, new int[] {
                         2000,
-                        2001
-                        }, "green", 1),
-                    new Car("toyota", 1999, new string[] {
-                            "Bob",
-                            "Lucy",
-                            "Robert"
+                        2004
+                        }, "black", 1),
+                    new Car("tesla", 2003, new string[] {
+                            "Ben",
+                            "Lisa",
+                            "Rodger"
                             }, new int[] {
                             1999,
-                            2001,
+                            2004,
                             2002
-                            }, "red", 2),
-                    new Car("porshe", 2009, new string[] {
-                            "Emy"
+                            }, "blue", 2),
+                    new Car("bmw", 2008, new string[] {
+                            "Tom"
                             }, new int[] {
-                            2014
-                            }, "black", 3),
-                    new Car("honda", 2015, new string[] {
-                            "Kim",
-                            "Hannah"
+                            2019
+                            }, "white", 3),
+                    new Car("toyota", 2014, new string[] {
+                            "Sarah",
+                            "Rachel"
                             }, new int[] {
                             2015,
                             2017
-                            }, "yellow", 4),
-                    new Car("bmw", 1983, new string[] {
-                            "Alex"
+                            }, "green", 4),
+                    new Car("lexus", 1997, new string[] {
+                            "Colin"
                             }, new int[] {
                             2005
-                            }, "pink", 5),
+                            }, "purple", 5),
             };
 
             Console.WriteLine("Введите номер двигателя:");
             int number = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Владельцы машины:");
 
-            for (int i = 0; i < CarArray.Length; i++) {
-                if (CarArray[i].Engnum == number) {
-                    for (int j = 0; j < CarArray[i].Owners.Length; j++) {
-                        Console.WriteLine(CarArray[i].Owners[j]);
+            for (int i = 0; i < CarArr.Length; i++) {
+                if (CarArr[i].Engnumber == number) {
+                    for (int j = 0; j < CarArr[i].Owners.Length; j++) {
+                        Console.WriteLine(CarArr[i].Owners[j]);
                     }
                 }
 
@@ -75,10 +75,10 @@ using System;
             Console.WriteLine("Введите год тех. осмотра:");
             int year = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Машины:");
-            for (int i = 0; i < CarArray.Length; i++) {
-                for (int j = 0; j < CarArray[i].Healthcheckyears.Length; j++) {
-                    if (CarArray[i].Healthcheckyears[j] == year) {
-                        Console.WriteLine(CarArray[i].Name);
+            for (int i = 0; i < CarArr.Length; i++) {
+                for (int j = 0; j < CarArr[i].TOyears.Length; j++) {
+                    if (CarArr[i].TOyears[j] == year) {
+                        Console.WriteLine(CarArr[i].Name);
                     }
                 }
             }
@@ -86,9 +86,9 @@ using System;
             Console.WriteLine();
 
             Console.WriteLine("Машины с одним владельцем:");
-            for (int i = 0; i < CarArray.Length; i++) {
-                if (CarArray[i].Owners.Length == 1) {
-                    Console.WriteLine(CarArray[i].Name);
+            for (int i = 0; i < CarArr.Length; i++) {
+                if (CarArr[i].Owners.Length == 1) {
+                    Console.WriteLine(CarArr[i].Name);
                 }
             }
 
