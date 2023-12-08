@@ -1,5 +1,5 @@
 using System;
-    class Car {
+    public class Car {
         public string Name;
         public int Year;
         public string[] Owners;
