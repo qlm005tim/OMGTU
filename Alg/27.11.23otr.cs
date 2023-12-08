@@ -8,7 +8,7 @@ using System;
             int n;
             int x = 0;
             Console.WriteLine("t");
-         t=Convert.ToInt32(Console.ReadLine());
+           t=Convert.ToInt32(Console.ReadLine());
             int y = t;
             Console.WriteLine("n");
             n = Convert.ToInt32(Console.ReadLine());
