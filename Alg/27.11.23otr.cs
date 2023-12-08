@@ -22,7 +22,8 @@ using System;
                 y = Math.Min(x+t, y+b);
             }
             Console.WriteLine(Math.Min(x+t,y));
-            Console.ReadLine() 
+            Console.ReadLine();
+
         }
     }
 }
