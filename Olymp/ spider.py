@@ -38,13 +38,17 @@ if (sy==0 and fz==0) or (fy==0 and sz==0):
         r=((sx-fx)**2 + (0 - fy)**2)**0.5
     else: r=((sx-fx)**2 +(0-fz)**2)**0.5
 if (sy==0 and fz==c) or (fy==0 and sz==c):
-     if sy==0 and fz==c:
+    if sy==0 and fz==c:
         r=((sx-fx)**2 + (0 - fy)**2)**0.5
     else: r=((sx-fx)**2 +(c-fz)**2)**0.5
 if (sy==0 and fx==a) or (fy==0 and sx==a):
-    
+    if sy==0 and fx==a:
+        r=((0-fy)**2 + (sz - fz)**2)**0.5
+    else: r=((a-fx)**2 +(sz-fz)**2)**0.5
 if (sy==0 and fx==0) or (fy==0 and sx==0):
-    
+    if sy==0 and fx==0:
+        r=((0-fy)**2 + (sz - fz)**2)**0.5
+    else: r=((0-fx)**2 +(sz-fz)**2)**0.5
 if (sy==b and fz==0) or (fy==b and sz==0):
     
 if (sy==b and fz==c) or (fy==b and sz==c):
