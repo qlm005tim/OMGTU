@@ -34,9 +34,13 @@ if (sx==0 and fx==a) or (sx==a and fx==0):
     r=min(r1,r2,r3,r4)
     
 if (sy==0 and fz==0) or (fy==0 and sz==0):
-    r=(sx-fx) + (0- fy) or 
+    if sy==0 and fz==0:
+        r=((sx-fx)**2 + (0 - fy)**2)**0.5
+    else: r=((sx-fx)**2 +(0-fz)**2)**0.5
 if (sy==0 and fz==c) or (fy==0 and sz==c):
-    
+     if sy==0 and fz==c:
+        r=((sx-fx)**2 + (0 - fy)**2)**0.5
+    else: r=((sx-fx)**2 +(c-fz)**2)**0.5
 if (sy==0 and fx==a) or (fy==0 and sx==a):
     
 if (sy==0 and fx==0) or (fy==0 and sx==0):
