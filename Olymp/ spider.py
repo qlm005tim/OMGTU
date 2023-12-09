@@ -50,18 +50,34 @@ if (sy==0 and fx==0) or (fy==0 and sx==0):
         r=((0-fy)**2 + (sz - fz)**2)**0.5
     else: r=((0-fx)**2 +(sz-fz)**2)**0.5
 if (sy==b and fz==0) or (fy==b and sz==0):
-    
+    if sy==b and fz==0:
+        r=((sx-fx)**2 + (b - fy)**2)**0.5
+    else: r=((sx-fx)**2 +(0-fz)**2)**0.5
 if (sy==b and fz==c) or (fy==b and sz==c):
-    
+    if sy==b and fz==c:
+        r=((sx-fx)**2 + (b - fy)**2)**0.5
+    else: r=((sx-fx)**2 +(c-fz)**2)**0.5
 if (sy==b and fx==a) or (fy==b and sx==a):
-    
+    if sy==b and fx==a:
+        r=((sz-fz)**2 + (b - fy)**2)**0.5
+    else: r=((sz-fz)**2 +(a-fx)**2)**0.5
 if (sy==b and fx==0) or (fy==b and sx==0):
-    
+    if sy==b and fx==0:
+        r=((sz-fz)**2 + (b - fy)**2)**0.5
+    else: r=((sz-fz)**2 +(0-fx)**2)**0.5
 if (sx==a and fz==0) or (fx==a and sz==0):
-    
+    if sx==a and fz==0:
+        r=((sy-fy)**2 + (a - fx)**2)**0.5
+    else: r=((sy-fy)**2 +(0-fz)**2)**0.5
 if (sx==0 and fz==0) or (fx==0 and sz==0):
-    
+    if sx==0 and fz==0:
+        r=((sy-fy)**2 + (0 - fx)**2)**0.5
+    else: r=((sy-fy)**2 +(0-fz)**2)**0.5
 if (sx==a and fz==c) or (fx==a and sz==c):
-    
+    if sx==a and fz==c:
+        r=((sy-fy)**2 + (a - fx)**2)**0.5
+    else: r=((sy-fy)**2 +(c-fz)**2)**0.5
 if (sx==0 and fz==c) or (fx==0 and sz==c):
-    
+    if sx==0 and fz==c:
+        r=((sy-fy)**2 + (0 - fx)**2)**0.5
+    else: r=((sy-fy)**2 +(c-fz)**2)**0.5
