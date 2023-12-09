@@ -81,3 +81,7 @@ if (sx==0 and fz==c) or (fx==0 and sz==c):
     if sx==0 and fz==c:
         r=((sy-fy)**2 + (0 - fx)**2)**0.5
     else: r=((sy-fy)**2 +(c-fz)**2)**0.5
+
+
+
+print(r) 
