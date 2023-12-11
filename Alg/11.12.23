@@ -1,0 +1,30 @@
+using System;
+class Program
+{
+static void Main()
+{
+    Console.WriteLine("Введите строку для поиска:");
+    string searchStr = Console.ReadLine();
+
+    Console.WriteLine("Введите текст (несколько строк, для завершения введите пустую строку):");
+
+    string inputText = "";
+    string line;
+    do
+    {
+    line = Console.ReadLine();
+    inputText += line + "\n";
+    } while (!string.IsNullOrWhiteSpace(line));
+
+    int count = CountString(inputText, searchStr);
+
+    Console.WriteLine($"Строка '{searchStr}' встречается {count} раз в тексте.");
+    }
+
+    static int CountString(string inputText, string searchStr)
+    {
+    string replacedText = inputText.Replace(searchStr, "");
+    int count = (inputText.Length - replacedText.Length) / searchStr.Length;
+    return count;
+    }
+}
