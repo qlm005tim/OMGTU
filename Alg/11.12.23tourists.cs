@@ -34,12 +34,12 @@ class Program
         double v = u / 60;
         double tost0 = (hz - hv) * 60 + (60 - mv) + mz;
 
-        double[] rast = double[n + 1];
+        double[] rast = new double[n + 1];
         rast[0] = 0;
-       for (int i = 1; i <= n; i++)
-       {
-           rast[i] = numbers[i - 1];
-       }
+        for (int i = 1; i <= n; i++)
+        {
+            rast[i] = numbers[i - 1];
+        }
 
         //Array.Copy(numbers, 0, rast, 1, n);
 
@@ -48,14 +48,14 @@ class Program
         double tost_pre = tost0;
         for (int i = 1; i <= n; i++)
         {
-             
+
             double t = (rast[i] - rast[i - 1]) / v;
             double tost = tost_pre - t;
-   
+
 
             if (tost < 0)
             {
-                
+
                 tost = tost0 - t;
                 tost_pre=tost;
                 numost += (i - 1).ToString() + " ";
