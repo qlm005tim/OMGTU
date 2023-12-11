@@ -34,9 +34,14 @@ class Program
         double v = u / 60;
         double tost0 = (hz - hv) * 60 + (60 - mv) + mz;
 
-        double[] rast = new double[n + 1];
+        double[] rast = double[n + 1];
         rast[0] = 0;
-        Array.Copy(numbers, 0, rast, 1, n);
+       for (int i = 1; i <= n; i++)
+       {
+           rast[i] = numbers[i - 1];
+       }
+
+        //Array.Copy(numbers, 0, rast, 1, n);
 
         string numost = "";
         int count_days = 0;
