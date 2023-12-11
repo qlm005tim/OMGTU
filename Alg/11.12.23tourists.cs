@@ -8,7 +8,7 @@ class Program
         Console.WriteLine("Введите скорость u (дробное число):");
         double u = Convert.ToDouble(Console.ReadLine());
 
-        Console.WriteLine("Введите количество чисел n:");
+        Console.WriteLine("Введите количество пунктов n:");
         int n = Convert.ToInt32(Console.ReadLine());
 
         double[] numbers = new double[n];
@@ -31,29 +31,27 @@ class Program
         Console.WriteLine("Введите минуты заката mz:");
         int mz = Convert.ToInt32(Console.ReadLine());
 
-        double v = u / 60;
-        double tost0 = (hz - hv) * 60 + (60 - mv) + mz;
+        double v = u / 60;// скорость в км/мин
+        double tost0 = (hz - hv) * 60 + (60 - mv) + mz;// остаток времени в начале дня(продолжительность дня) 
 
-        double[] rast = new double[n + 1];
+        double[] rast = new double[n + 1];// массив с расстояниями
         rast[0] = 0;
         for (int i = 1; i <= n; i++)
         {
             rast[i] = numbers[i - 1];
         }
 
-        //Array.Copy(numbers, 0, rast, 1, n);
-
-        string numost = "";
-        int count_days = 0;
-        double tost_pre = tost0;
+        string numost = "";// номера остановок
+        int count_days = 0;// количество дней
+        double tost_pre = tost0;// остаток времени после дохождения до предыдущего пункта
         for (int i = 1; i <= n; i++)
         {
 
-            double t = (rast[i] - rast[i - 1]) / v;
-            double tost = tost_pre - t;
+            double t = (rast[i] - rast[i - 1]) / v;// время пути до пункта
+            double tost = tost_pre - t;// остаток времени до ночи после прихода в пункт
 
 
-            if (tost < 0)
+            if (tost < 0)// если остаток отрицательный, то нужно остаться в предыдущем пункте и продолжить путь с нового дня
             {
 
                 tost = tost0 - t;
