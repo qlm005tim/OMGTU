@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 class Product
 {
@@ -15,37 +14,38 @@ public int ExpiryDays { get; set; }
 
 class Warehouse
 {
-private List products = new List();
+private Product[] products = new Product[10];
+private int productCount = 0;
 
 public void AddProduct(Product product)
 {
-products.Add(product);
+products[productCount] = product;
+productCount++;
 }
 
-public List GetExpiredProducts()
+public void GetExpiredProducts(int currentDay, int currentMonth)
 {
-List expiredProducts = new List();
-foreach (Product product in products)
+Console.WriteLine("Товары с истекшим сроком годности:");
+for (int i = 0; i < productCount; i++)
 {
-int manufacturingDays = product.ManufacturingDate[1] * 30 + product.ManufacturingDate[0];
-int expiryDate = manufacturingDays + product.ExpiryDays;
-int supplyDays = product.SupplyDate[1] * 30 + product.SupplyDate[0];
-if (supplyDays + expiryDate <= 60) // Assuming all months have 30 days
+int manufacturingDays = products[i].ManufacturingDate[1] * 30 + products[i].ManufacturingDate[0];
+int expiryDate = manufacturingDays + products[i].ExpiryDays;
+int supplyDays = products[i].SupplyDate[1] * 30 + products[i].SupplyDate[0];
+if (supplyDays + expiryDate <= currentMonth * 30 + currentDay) // Assuming all months have 30 days
 {
-expiredProducts.Add(product);
+Console.WriteLine(products[i].Name);
 }
 }
-return expiredProducts;
 }
 
 public double GetTotalSales(string productName)
 {
 double totalSales = 0;
-foreach (Product product in products)
+for (int i = 0; i < productCount; i++)
 {
-if (product.Name == productName)
+if (products[i].Name == productName)
 {
-totalSales += product.QuantitySold * product.UnitPrice;
+totalSales += products[i].QuantitySold * products[i].UnitPrice;
 }
 }
 return totalSales;
@@ -82,19 +82,13 @@ Name = "Печенье",
 ExpiryDays = 30
 });
 
-List expiredProducts = warehouse.GetExpiredProducts();
 Console.WriteLine("Товары с истекшим сроком годности:");
-foreach (Product product in expiredProducts)
-{
-Console.WriteLine(product.Name);
-}
+warehouse.GetExpiredProducts(15, 7);
 
 double totalSales = warehouse.GetTotalSales("Шоколад");
 Console.WriteLine("Общая сумма продажи шоколада: " + totalSales);
 }
 }
-```
 
-Эта программа создает объект `Warehouse`, представляющий склад магазина, а также классы `Product` и `SaleInfo` для хранения информации о товарах и продажах.
 
-Метод `GetExpiredProducts` возвращает список товаров с истекшим сроком годности, а метод `GetTotalSales` возвращает общую сумму продажи определенного товара.
+В этой программе используется массив `products` для хранения товаров на складе. Метод `GetExpiredProducts` возвращает товары с истекшим сроком годности, а метод `GetTotalSales` возвращает общую сумму продажи определенного товара.
