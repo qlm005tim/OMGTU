@@ -1,11 +1,10 @@
 using System;
-
 class Product
 {
 public int[] SupplyDate { get; set; }
-public int[] ManufacturingDate { get; set; }
+public int[] ManufactDate { get; set; }
 public int Quantity { get; set; }
-public double UnitPrice { get; set; }
+public double Price { get; set; }
 public int[] SaleDate { get; set; }
 public int QuantitySold { get; set; }
 public string Name { get; set; }
@@ -28,8 +27,8 @@ public void GetExpiredProducts(int currentDay, int currentMonth)
 Console.WriteLine("Товары с истекшим сроком годности:");
 for (int i = 0; i < productCount; i++)
 {
-int manufacturingDays = products[i].ManufacturingDate[1] * 30 + products[i].ManufacturingDate[0];
-int expiryDate = manufacturingDays + products[i].ExpiryDays;
+int manufactDays = products[i].ManufactDate[1] * 30 + products[i].ManufactDate[0];
+int expiryDate = manufactDays + products[i].ExpiryDays;
 int supplyDays = products[i].SupplyDate[1] * 30 + products[i].SupplyDate[0];
 if (supplyDays + expiryDate <= currentMonth * 30 + currentDay) // Assuming all months have 30 days
 {
@@ -45,7 +44,7 @@ for (int i = 0; i < productCount; i++)
 {
 if (products[i].Name == productName)
 {
-totalSales += products[i].QuantitySold * products[i].UnitPrice;
+totalSales += products[i].QuantitySold * products[i].Price;
 }
 }
 return totalSales;
@@ -61,9 +60,9 @@ Warehouse warehouse = new Warehouse();
 warehouse.AddProduct(new Product
 {
 SupplyDate = new int[] { 10, 5 }, // Supply date (day, month)
-ManufacturingDate = new int[] { 5, 5 }, // Manufacturing date (day, month)
+ManufactDate = new int[] { 5, 5 }, // Manufacturing date (day, month)
 Quantity = 100,
-UnitPrice = 10,
+Price = 10,
 SaleDate = new int[] { 15, 5 }, // Sale date (day, month)
 QuantitySold = 30,
 Name = "Шоколад",
@@ -73,9 +72,9 @@ ExpiryDays = 45
 warehouse.AddProduct(new Product
 {
 SupplyDate = new int[] { 15, 7 }, // Supply date (day, month)
-ManufacturingDate = new int[] { 1, 7 }, // Manufacturing date (day, month)
+ManufactDate = new int[] { 1, 7 }, // Manufacturing date (day, month)
 Quantity = 50,
-UnitPrice = 5,
+Price = 5,
 SaleDate = new int[] { 20, 7 }, // Sale date (day, month)
 QuantitySold = 20,
 Name = "Печенье",
