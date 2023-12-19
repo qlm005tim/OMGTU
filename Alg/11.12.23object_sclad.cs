@@ -30,7 +30,7 @@ for (int i = 0; i < productCount; i++)
 int manufactDays = products[i].ManufactDate[1] * 30 + products[i].ManufactDate[0];
 int expiryDate = manufactDays + products[i].ExpiryDays;
 int supplyDays = products[i].SupplyDate[1] * 30 + products[i].SupplyDate[0];
-if (supplyDays + expiryDate <= currentMonth * 30 + currentDay) // Assuming all months have 30 days
+if (supplyDays + expiryDate <= currentMonth * 30 + currentDay)
 {
 Console.WriteLine(products[i].Name);
 }
@@ -59,35 +59,33 @@ Warehouse warehouse = new Warehouse();
 
 warehouse.AddProduct(new Product
 {
-SupplyDate = new int[] { 10, 5 }, // Supply date (day, month)
-ManufactDate = new int[] { 5, 5 }, // Manufacturing date (day, month)
+SupplyDate = new int[] { 10, 5 }, 
+ManufactDate = new int[] { 5, 5 },
 Quantity = 100,
 Price = 10,
-SaleDate = new int[] { 15, 5 }, // Sale date (day, month)
+SaleDate = new int[] { 15, 5 },
 QuantitySold = 30,
-Name = "Шоколад",
+Name = "Молоко",
 ExpiryDays = 45
 });
 
 warehouse.AddProduct(new Product
 {
-SupplyDate = new int[] { 15, 7 }, // Supply date (day, month)
-ManufactDate = new int[] { 1, 7 }, // Manufacturing date (day, month)
+SupplyDate = new int[] { 15, 7}, 
+ManufactDate = new int[] { 1, 7 },
 Quantity = 50,
 Price = 5,
-SaleDate = new int[] { 20, 7 }, // Sale date (day, month)
+SaleDate = new int[] { 20, 7 },
 QuantitySold = 20,
-Name = "Печенье",
+Name = "кофе",
 ExpiryDays = 30
 });
 
 Console.WriteLine("Товары с истекшим сроком годности:");
 warehouse.GetExpiredProducts(15, 7);
 
-double totalSales = warehouse.GetTotalSales("Шоколад");
-Console.WriteLine("Общая сумма продажи шоколада: " + totalSales);
+double totalSales = warehouse.GetTotalSales("Молоко");
+Console.WriteLine("Общая сумма продажи молока: " + totalSales);
 }
 }
 
-
-В этой программе используется массив `products` для хранения товаров на складе. Метод `GetExpiredProducts` возвращает товары с истекшим сроком годности, а метод `GetTotalSales` возвращает общую сумму продажи определенного товара.
