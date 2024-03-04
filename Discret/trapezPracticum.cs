@@ -24,7 +24,3 @@ public class MyScalarFunc{
         return -x*x+9;
     }
 }
-
-Func<double, double> f=(double x)=> -x*x+9;
-var answ=TrapezoidalRule.Solve(f, -3, 3,0.1);
-answ
