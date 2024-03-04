@@ -13,15 +13,16 @@ class TrapezoidalRule {
         }
         double nac_x=a;
         double s_trap=0;
-        for (int i=0; i< (b-a)/dx; i++) {
+        for (int i=0;  i<Convert.ToInt32((b-a)/dx); i++) {
+            double nac_x=a+i*dx;
             double si=(f(nac_x)+f(nac_x+dx))*0.5*dx;
-            nac_x=nac_x+dx;
+     
             s_trap+=si;}
         return s_trap;
     }
 }
-public class MyScalarFunc{
-    public static double calc(double x){
-        return -x*x+9;
-    }
-}
+//public class MyScalarFunc{
+    //public static double calc(double x){
+        //return -x*x+9;
+    //}
+//}
