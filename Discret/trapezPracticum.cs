@@ -7,7 +7,8 @@ class TrapezoidalRule {
       Console.WriteLine(f(2.9)); //it is function no answer
   }
     public static double Solve(Func<double, double>f, double a, double b, double dx){
-        if (b<a || dx<=0 || (a+b+dx)%1!=0){
+        eps=1E-7;
+        if ((Math.Abs(b-a)>=-eps || dx<=eps || (a+b+dx)%1!=0){
             throw new ArgumentException ("Неверные данные");
         }
         double nac_x=a;
