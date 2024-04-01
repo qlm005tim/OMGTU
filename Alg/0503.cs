@@ -74,3 +74,57 @@ namespace ConsoleApplication28
     }
 }
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+ 
+class Program
+{
+    static void Main()
+    {
+        Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();
+
+        while (true)
+        {
+            Console.WriteLine("Введите номер телефона звонящего (или 'exit' для выхода):");
+            string callerNum = Console.ReadLine();
+
+            if (callerNum == "exit")
+            {
+                break;
+            }
+
+            Console.WriteLine("Введите номер телефона вызываемого абонента:");
+            string calleeNum = Console.ReadLine();
+
+            Console.WriteLine("Введите дату звонка:");
+            string callDate = Console.ReadLine();
+
+            Console.WriteLine("Введите количество минут разговора:");
+            string callTime = Console.ReadLine();
+
+            string[] callDetails = new string[] { calleeNum, callDate, callTime };
+
+            if (callsDictionary.ContainsKey(callerNum))
+            {
+                callsDictionary[callerNum].Add(callDetails);
+            }
+            else
+            {
+                callsDictionary.Add(callerNum, new List<string[]> { callDetails });
+            }
+        }
+
+        Console.WriteLine("Словарь звонков:");
+        foreach (var entry in callsDictionary)
+        {
+            Console.WriteLine($"Номер звонящего: {entry.Key}");
+            foreach (var call in entry.Value)
+            {
+                Console.WriteLine($"\tНомер вызываемого абонента: {call[0]}, Дата звонка: {call[1]}, Длительность разговора: {call[2]} минут");
+            }
+        }
+    }
+}
