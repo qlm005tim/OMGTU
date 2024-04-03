@@ -117,7 +117,7 @@ class Program
             }
         }
 
-        Console.WriteLine("Словарь звонков:");
+        /*Console.WriteLine("Словарь звонков:");
         foreach (var entry in callsDictionary)
         {
             Console.WriteLine($"Номер звонящего: {entry.Key}");
@@ -125,6 +125,61 @@ class Program
             {
                 Console.WriteLine($"\tНомер вызываемого абонента: {call[0]}, Дата звонка: {call[1]}, Длительность разговора: {call[2]} минут");
             }
+        }*/
+
+
+
+
+  Console.WriteLine ("input the key ");
+   
+string key = Console.Readline(); // Выбранный ключ
+
+        int maxCount = 0;
+        string startElement = "";
+        
+        foreach (string[] subArray in callsDictionary[key])
+        {
+            if (maxCount < CountStartingElements(callsDictionary[key], subArray[0]))
+            {
+                maxCount = CountStartingElements(callsDictionary[key], subArray[0]);
+                startElement = subArray[0];
+            }
         }
+
+        List<string[]> newArray = new List<string[]>();
+        foreach (string[] subArray in dictionary[key])
+        {
+            if (subArray[0] == startElement)
+            {
+                newArray.Add(subArray);
+            }
+        }
+
+        PrintArray(newArray);
     }
 }
+}
+
+    static int CountStartingElements(string[][] array, string elem)
+    {
+        int count = 0;
+        foreach (string[] subArray in array)
+        {
+            if (subArray[0] == elem)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    static void PrintArray(List<string[]> array)
+    {
+        foreach (string[] subArr in array)
+        {
+            Console.WriteLine("[" + string.Join(", ", subArr) + "]");
+        }
+    }
+
+    
