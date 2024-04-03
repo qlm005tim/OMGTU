@@ -146,26 +146,26 @@ string key = Console.Readline(); // Выбранный ключ
             }
         }
 
-        List<string[]> newArray = new List<string[]>();
-        foreach (string[] subArray in dictionary[key])
+        List<string[]> res = new List<string[]>();
+        foreach (string[] subArray in callsDictionary[key])
         {
             if (subArray[0] == startElement)
             {
-                newArray.Add(subArray);
+                res.Add(subArray);
             }
         }
 
-        PrintArray(newArray);
+        PrintArray(res);
     }
 }
-}
+
 
     static int CountStartingElements(string[][] array, string elem)
     {
         int count = 0;
-        foreach (string[] subArray in array)
+        foreach (string[] subArr in array)
         {
-            if (subArray[0] == elem)
+            if (subArr[0] == elem)
             {
                 count++;
             }
