@@ -12,7 +12,7 @@ graph = [
     [1, 5, 97],
 ]
 
-print(graminDertices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Vertices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 Edges = [
     [0, 1],
     [1, 2],
