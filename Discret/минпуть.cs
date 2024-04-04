@@ -12,8 +12,8 @@ graph = [
     [1, 5, 97],
 ]
 
-Vertices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-Edges = [
+Vers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+Ribs = [
     [0, 1],
     [1, 2],
     [2, 3],
@@ -27,37 +27,39 @@ Edges = [
     [1, 5],
 ]
 Weights = [19, 35, 13, 46, 34, 23, 67, 23, 13, 64, 97]
-start, fin = 1, 6
+start = 1
+ended=6
 s = [start]
+
 minDistances = {start: 0}
-index = 0
+
 used = [1]
+index = 0
+for i in range(len(Ribs)):
+    if Ribs[i][0] == start:
+        minDistances[Ribs[i][1]] = Weights[i]
+        used.append(Ribs[i][1])
 
-for i in range(len(Edges)):
-    if Edges[i][0] == start:
-        minDistances[Edges[i][1]] = Weights[i]
-        used.append(Edges[i][1])
-
-for i in Vertices:
+for i in Vers:
     if used.count(i) == 0:
         minDistances[i] = float("inf")
 
 while True:
-    currentElement = s[index]
-    possibleVertices = []
+    curElem = s[index]
+    possibleVers = []
     possibleWeights = []
 
-    for i in range(len(Edges)):
-        if Edges[i][0] == currentElement:
-            possibleVertices.append(Edges[i][1])
+    for i in range(len(Ribs)):
+        if Ribs[i][0] == curElem:
+            possibleVers.append(Ribs[i][1])
             possibleWeights.append(Weights[i])
 
-    for i in possibleVertices:
+    for i in possibleVers:
         if s.count(i) == 0:
             value = min(
                 minDistances[i],
-                minDistances[currentElement]
-                + possibleWeights[possibleVertices.index(i)],
+                minDistances[curElem]
+                + possibleWeights[possibleVers.index(i)],
             )
             minDistances[i] = value
 
@@ -66,32 +68,32 @@ while True:
         if s.count(key) == 0:
             if value < minWeights:
                 minWeights = value
-                minEdges = key
-    if minEdges != fin:
-        s.append(minEdges)
+                minRibs = key
+    if minRibs != ended:
+        s.append(minRibs)
         index += 1
     else:
-        minDistances[minEdges] = minDistances[minEdges] + possibleWeights.index(
+        minDistances[minRibs] = minDistances[minRibs] + possibleWeights.index(
             min(possibleWeights)
         )
         break
 
-result = minDistances[fin]
+res = minDistances[ended]
 
-path = [fin]
+path = [ended]
 
-for i in range(0, len(Vertices)):
+for i in range(0, len(Vers)):
     leng = 0
-    pair = [Vertices[i], path[-1]]
-    for j in range(len(Edges)):
-        if Edges[j] == pair:
+    pair = [Vers[i], path[-1]]
+    for j in range(len(Ribs)):
+        if Ribs[j] == pair:
             leng = Weights[j]
             break
-    if minDistances[Vertices[i]] + leng == result:
-        path.append(Vertices[i])
-        result -= leng
+    if minDistances[Vers[i]] + leng == res:
+        path.append(Vers[i])
+        res -= leng
 path.append(start)
 
-print(f"Самый короткий путь: {result}")
-print(f"Маршрут самого короткого пути: {path}")
-print(f"Коротчайшие пути для каждой вершины из вершины {start}: {minDistances}")
+print(f"кратчайший путь: {res}")
+print(f"Маршрут кратчайшего пути: {path}")
+print(f"Кратчайшие пути для каждой вершины из вершины {start}: {minDistances}")
