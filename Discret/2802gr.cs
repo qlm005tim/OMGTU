@@ -20,51 +20,50 @@ graph = [
         [12, 13],
 ]
 
-def Vertex(graph):
-    vertex = set()
+def Vers(graph):
+    vers = set()
 
-    for top in graph:
-        vertex.add(top[0])
-        vertex.add(top[1])
+    for x in graph:
+        vers.add(x[0])
+        vers.add(x[1])
 
-    return sorted(list(vertex))
+    return sorted(list(vers))
 
 def Components(graph):
     components = [set()]
 
-    vertex_list = Vertex(graph)
+    vers_list = Vers(graph)
 
     components[0].add(graph[0][0])
     components[0].add(graph[0][1])
 
-    vertex_list.remove(graph[0][0])
-    vertex_list.remove(graph[0][1])
+    vers_list.remove(graph[0][0])
+    vers_list.remove(graph[0][1])
 
-    while len(vertex_list) > 0:
-        for vertex in graph:
+    while len(vers_list) > 0:
+        for ver in graph:
             for i in range(len(components)):
                 elementOfComponents = components[i]
-                if vertex[0] in elementOfComponents or vertex[1] in elementOfComponents:
-                    elementOfComponents.add(vertex[0])
-                    elementOfComponents.add(vertex[1])
+                if ver[0] in elementOfComponents or ver[1] in elementOfComponents:
+                    elementOfComponents.add(ver[0])
+                    elementOfComponents.add(ver[1])
 
-                    if vertex[0] in vertex_list:
-                        vertex_list.remove(vertex[0])
-                    if vertex[1] in vertex_list:
-                        vertex_list.remove(vertex[1])
+                    if ver[0] in ver_list:
+                        ver_list.remove(ver[0])
+                    if ver[1] in ver_list:
+                        ver_list.remove(ver[1])
 
                 else:
                     if i == len(components) - 1:
                         c = set()
-                        c.add(vertex[0])
-                        c.add(vertex[1])
+                        c.add(ver[0])
+                        c.add(ver[1])
                         components.append(c)
 
-                    if vertex[0] in vertex_list:
-                        vertex_list.remove(vertex[0])
-                    if vertex[1] in vertex_list:
-                        vertex_list.remove(vertex[1])
+                    if ver[0] in ver_list:
+                        ver_list.remove(ver[0])
+                    if ver[1] in ver_list:
+                        ver_list.remove(ver[1])
 
     return components
-
 print(Components(graph))
