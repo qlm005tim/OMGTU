@@ -155,7 +155,8 @@ string key = Console.Readline(); // Выбранный ключ
             }
         }
 
-        PrintArray(res);
+        List<string[]> result = ResList(res);
+        PrintArray(result);
     }
 }
 
