@@ -159,6 +159,29 @@ string key = Console.Readline(); // Выбранный ключ
     }
 }
 
+static List<string[]> ResList(List<string[]> res)
+    {
+        HashSet<string> setElements = new HashSet<string>();
+        List<string[]> result = new List<string[]>();
+
+        foreach (var arr in res)
+        {
+            setElements.Add(arr[1]);
+        }
+
+        foreach (var element in setElements)
+        {
+            foreach (var arr in res)
+            {
+                if (arr[1] == element)
+                {
+                    result.Add(arr);
+                }
+            }
+        }
+
+        return result;
+    }
 
     static int CountStartingElements(string[][] array, string elem)
     {
