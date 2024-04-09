@@ -203,3 +203,79 @@ static List<string[]> ResList(List<string[]> res)
             Console.WriteLine("[" + string.Join(", ", subArr) + "]");
         }
     }
+
+
+
+``csharp
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Program
+{
+    public static void Main()
+    {
+        var dict = new Dictionary<string, List<List<string>>>
+        {
+ ["key1"] = new List<List<string>>
+            {
+                new List<string> {"a", "b", "10"},
+                new List<string> {"b", "c", "20"},
+                new List<string> {"a", "d", "30"},
+            },
+            ["key2"] = new List<List<string>>
+            {
+                new List<string> {"a", "e", "40"},
+                new List<string> {"b", "f", "50"},
+                new List<string> {"a", "g", "60"},
+            }
+        };
+
+        var key = "key1";
+        var result = DictFunc(dict, key);
+
+        foreach (var sublist in result)
+        {
+            Console.WriteLine(string.Join(", ", sublist));
+        }
+    }
+
+    public static List<List<string>> DictFunc(Dictionary<string, List<List<string>>> dict, string key)
+    {
+        var setA = new HashSet<string>();
+        var res = new List<List<string>>();
+        var maxSum = int.MinValue;
+
+        foreach (var sublist in dict[key])
+        {
+            setA.Add(sublist[0]);
+        }
+
+        foreach (var item in setA)
+        {
+            var sum = 0;
+            foreach (var sublist in dict[key])
+           {
+                if (sublist[0] == item)
+                {
+                    sum += int.Parse(sublist[2]);
+                }
+            }
+
+            if (sum > maxSum)
+            {
+                maxSum = sum;
+                res.Clear();
+                foreach (var sublist in dict[key])
+                {
+                    if (sublist[0] == item)
+                    {
+                        res.Add(sublist);
+                    }
+                }
+            }
+        }
+
+        return res;
+    }
+}
