@@ -197,7 +197,6 @@ static List<string[]> ResList(List<string[]> res)
         return count;
     }
 
-
     static void PrintArray(List<string[]> array)
     {
         foreach (string[] subArr in array)
@@ -205,5 +204,3 @@ static List<string[]> ResList(List<string[]> res)
             Console.WriteLine("[" + string.Join(", ", subArr) + "]");
         }
     }
-
-    
