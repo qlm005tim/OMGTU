@@ -85,7 +85,6 @@ class Program
     static void Main()
     {
         Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();
-
         while (true)
         {
             Console.WriteLine("Введите номер телефона звонящего (или 'exit' для выхода):");
