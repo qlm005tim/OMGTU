@@ -206,7 +206,7 @@ static List<string[]> ResList(List<string[]> res)
 
 
 
-``csharp
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -215,7 +215,7 @@ public class Program
 {
     public static void Main()
     {
-        var dict = new Dictionary<string, List<List<string>>>
+        /*var dict = new Dictionary<string, List<List<string>>>
         {
  ["key1"] = new List<List<string>>
             {
@@ -229,10 +229,48 @@ public class Program
                 new List<string> {"b", "f", "50"},
                 new List<string> {"a", "g", "60"},
             }
-        };
+        };*/
 
-        var key = "key1";
-        var result = DictFunc(dict, key);
+Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();
+        while (true)
+        {
+            Console.WriteLine("Введите номер телефона звонящего (или 'exit' для выхода):");
+            string callerNum = Console.ReadLine();
+
+            if (callerNum == "exit")
+            {
+                break;
+            }
+
+            Console.WriteLine("Введите номер телефона вызываемого абонента:");
+            string calleeNum = Console.ReadLine();
+
+            Console.WriteLine("Введите дату звонка:");
+            string callDate = Console.ReadLine();
+
+            Console.WriteLine("Введите количество минут разговора:");
+            string callTime = Console.ReadLine();
+
+            string[] callDetails = new string[] { calleeNum, callDate, callTime };
+
+            if (callsDictionary.ContainsKey(callerNum))
+            {
+                callsDictionary[callerNum].Add(callDetails);
+            }
+            else
+            {
+                callsDictionary.Add(callerNum, new List<string[]> { callDetails });
+            }
+        }
+
+
+        
+
+Console.WriteLine ("input the key ");
+   
+string key = Console.Readline(); // Выбранный ключ
+
+        var result = DictFunc(callsDictionary y, key);
 
         foreach (var sublist in result)
         {
