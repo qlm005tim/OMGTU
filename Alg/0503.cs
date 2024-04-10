@@ -79,7 +79,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
+
 class Program
 {
     static void Main()
@@ -130,12 +130,12 @@ class Program
 
 
   Console.WriteLine ("input the key ");
-   
+
 string key = Console.ReadLine(); // Выбранный ключ
 
         int maxCount = 0;
         string startElement = "";
-        
+
         foreach (string[] subArray in callsDictionary[key])
         {
             if (maxCount < CountStartingElements(callsDictionary[key], subArray[0]))
@@ -145,7 +145,7 @@ string key = Console.ReadLine(); // Выбранный ключ
             }
         }
 
-        List<string[]> res = new List<string[]>();
+List<string[]> res = new List<string[]>();
         foreach (string[] subArray in callsDictionary[key])
         {
             if (subArray[0] == startElement)
@@ -195,7 +195,7 @@ static List<string[]> ResList(List<string[]> res)
         return result;
     }
 
-    static int CountStartingElements(string[][] array, string elem)
+    static int CountStartingElements(List<string[]> array, string elem)
     {
         int count = 0;
         foreach (string[] subArr in array)
@@ -227,8 +227,7 @@ static List<string[]> ResList(List<string[]> res)
         {
             setA.Add(sublist[0]);
         }
-
-        foreach (var item in setA)
+foreach (var item in setA)
         {
             var sum = 0;
             foreach (var sublist in callsDictionary[key])
