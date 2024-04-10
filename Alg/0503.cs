@@ -164,7 +164,7 @@ foreach(var entry in callsDictionary) {
 
 Console.WriteLine(entry.Key);
 
-        PrintArray(ResList(result1);
+        PrintArray(ResList(result1));
 
     }
 }
