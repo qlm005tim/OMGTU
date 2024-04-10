@@ -131,7 +131,7 @@ class Program
 
   Console.WriteLine ("input the key ");
    
-string key = Console.Readline(); // Выбранный ключ
+string key = Console.ReadLine(); // Выбранный ключ
 
         int maxCount = 0;
         string startElement = "";
