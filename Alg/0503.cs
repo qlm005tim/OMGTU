@@ -157,16 +157,14 @@ string key = Console.Readline(); // Выбранный ключ
         List<string[]> result = ResList(res);
         PrintArray(result);
 
-foreach key in callsDictionary,........ 
 
-        var result = DictFunc(callsDictionary, key);
+foreach(var entry in callsDictionary) {
 
-        foreach (var sublist in result)
-        {
-            Console.WriteLine(string.Join(", ", sublist));
-        }
-    
+        var result1 = DictFunc(callsDictionary, entry.Key);
 
+Console.WriteLine(entry.Key);
+
+        PrintArray(ResList(result1);
 
     }
 }
@@ -217,52 +215,6 @@ static List<string[]> ResList(List<string[]> res)
             Console.WriteLine("[" + string.Join(", ", subArr) + "]");
         }
     }
-
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-public class Program
-{
-    public static void Main()
-    {
-
-Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();
-        while (true)
-        {
-            Console.WriteLine("Введите номер телефона звонящего (или 'exit' для выхода):");
-            string callerNum = Console.ReadLine();
-
-            if (callerNum == "exit")
-            {
-                break;
-            }
-
-            Console.WriteLine("Введите номер телефона вызываемого абонента:");
-            string calleeNum = Console.ReadLine();
-
-            Console.WriteLine("Введите дату звонка:");
-            string callDate = Console.ReadLine();
-
-            Console.WriteLine("Введите количество минут разговора:");
-            string callTime = Console.ReadLine();
-
-            string[] callDetails = new string[] { calleeNum, callDate, callTime };
-
-            if (callsDictionary.ContainsKey(callerNum))
-            {
-                callsDictionary[callerNum].Add(callDetails);
-            }
-            else
-            {
-                callsDictionary.Add(callerNum, new List<string[]> { callDetails });
-            }
-        }
-
-
-        
-
 
 
     public static List<string[]> DictFunc(Dictionary<string, List<string[]>> callsDictionary, string key)
