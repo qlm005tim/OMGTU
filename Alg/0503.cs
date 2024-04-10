@@ -156,8 +156,22 @@ string key = Console.Readline(); // Выбранный ключ
 
         List<string[]> result = ResList(res);
         PrintArray(result);
+
+foreach key in callsDictionary,........ 
+
+        var result = DictFunc(callsDictionary, key);
+
+        foreach (var sublist in result)
+        {
+            Console.WriteLine(string.Join(", ", sublist));
+        }
+    
+
+
     }
 }
+
+
 
 static List<string[]> ResList(List<string[]> res)
     {
@@ -205,8 +219,6 @@ static List<string[]> ResList(List<string[]> res)
     }
 
 
-
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -215,21 +227,6 @@ public class Program
 {
     public static void Main()
     {
-        /*var dict = new Dictionary<string, List<List<string>>>
-        {
- ["key1"] = new List<List<string>>
-            {
-                new List<string> {"a", "b", "10"},
-                new List<string> {"b", "c", "20"},
-                new List<string> {"a", "d", "30"},
-            },
-            ["key2"] = new List<List<string>>
-            {
-                new List<string> {"a", "e", "40"},
-                new List<string> {"b", "f", "50"},
-                new List<string> {"a", "g", "60"},
-            }
-        };*/
 
 Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();
         while (true)
@@ -266,25 +263,15 @@ Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List
 
         
 
-Console.WriteLine ("input the key ");
-   
-string key = Console.Readline(); // Выбранный ключ
 
-        var result = DictFunc(callsDictionary y, key);
 
-        foreach (var sublist in result)
-        {
-            Console.WriteLine(string.Join(", ", sublist));
-        }
-    }
-
-    public static List<List<string>> DictFunc(Dictionary<string, List<List<string>>> dict, string key)
+    public static List<string[]> DictFunc(Dictionary<string, List<string[]>> callsDictionary, string key)
     {
         var setA = new HashSet<string>();
-        var res = new List<List<string>>();
+        var res = new List<string[]>();
         var maxSum = int.MinValue;
 
-        foreach (var sublist in dict[key])
+        foreach (var sublist in callsDictionary[key])
         {
             setA.Add(sublist[0]);
         }
@@ -292,7 +279,7 @@ string key = Console.Readline(); // Выбранный ключ
         foreach (var item in setA)
         {
             var sum = 0;
-            foreach (var sublist in dict[key])
+            foreach (var sublist in callsDictionary[key])
            {
                 if (sublist[0] == item)
                 {
@@ -304,7 +291,7 @@ string key = Console.Readline(); // Выбранный ключ
             {
                 maxSum = sum;
                 res.Clear();
-                foreach (var sublist in dict[key])
+                foreach (var sublist in callsDictionary[key])
                 {
                     if (sublist[0] == item)
                     {
