@@ -84,7 +84,7 @@ class Program
 {
     static void Main()
     {
-        Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();
+        Dictionary<string, List<string[]>> callsDictionary = new Dictionary<string, List<string[]>>();//создание словаря
         while (true)
         {
             Console.WriteLine("Введите номер телефона звонящего (или 'exit' для выхода):");
@@ -155,7 +155,7 @@ List<string[]> res = new List<string[]>();
         }
 
         List<string[]> result = ResList(res);
-        PrintArray(result);
+        PrintArray(result);//кому чаще всего звонил выбранный
 
 
 foreach(var entry in callsDictionary) {
@@ -164,14 +164,14 @@ foreach(var entry in callsDictionary) {
 
 Console.WriteLine(entry.Key);
 
-        PrintArray(ResList(result1));
+        PrintArray(ResList(result1));//с кем дольше всего говорил по сумме времени
 
     }
 }
 
 
 
-static List<string[]> ResList(List<string[]> res)
+static List<string[]> ResList(List<string[]> res)//функция группировки по дате
     {
         HashSet<string> setElements = new HashSet<string>();
         List<string[]> result = new List<string[]>();
@@ -195,7 +195,7 @@ static List<string[]> ResList(List<string[]> res)
         return result;
     }
 
-    static int CountStartingElements(List<string[]> array, string elem)
+    static int CountStartingElements(List<string[]> array, string elem)//функция для подсчёта сколько раз содержися определённый вызываемый абонент в массиве значений
     {
         int count = 0;
         foreach (string[] subArr in array)
@@ -208,7 +208,7 @@ static List<string[]> ResList(List<string[]> res)
         return count;
     }
 
-    static void PrintArray(List<string[]> array)
+    static void PrintArray(List<string[]> array)//функция для печати результата со скобками
     {
         foreach (string[] subArr in array)
         {
@@ -217,7 +217,7 @@ static List<string[]> ResList(List<string[]> res)
     }
 
 
-    public static List<string[]> DictFunc(Dictionary<string, List<string[]>> callsDictionary, string key)
+    public static List<string[]> DictFunc(Dictionary<string, List<string[]>> callsDictionary, string key)//функция для вывода информации о вызываемом абоненте с максимальной суммой времени
     {
         var setA = new HashSet<string>();
         var res = new List<string[]>();
