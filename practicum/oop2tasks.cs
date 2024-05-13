@@ -128,3 +128,183 @@ class OutputData
 }
 ```
 В этой программе предполагается, что входной JSON-файл называется "input.json", и результаты будут сохранены в файл "output.json". Вы можете изменить имена файлов в соответствии с вашими потребностями.
+
+
+
+
+// Класс для данных студента
+public class StudentData
+{
+    public string name { get; set; }
+    public string group { get; set; }
+    public string discipline { get; set; }
+    public int mark { get; set; }
+}
+
+
+// Класс для входных данных
+public class InputData
+{
+    public string taskName { get; set; }
+    public List<StudentData> data { get; set; }
+}
+
+
+public class OutputData
+{
+    public List<Dictionary<string, object>> Response { get; set; }
+}
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.IO;
+// Путь к входному и выходному файлам
+        string inputFilePath = "input.json";
+        string outputFilePath = "output.json";
+
+        // Чтение входных данных из файла
+        string inputJson = File.ReadAllText(inputFilePath);
+        InputData inputData = JsonConvert.DeserializeObject<InputData>(inputJson);
+
+        // Вычисление среднего балла для каждого студента
+        var studentGPAs = inputData.data
+            .GroupBy(s => s.name)
+            .Select(g => new 
+            {
+                Cadet = g.Key,
+                GPA = g.Average(s => s.mark)
+            });
+
+        // Выбор студентов с наивысшим средним баллом
+        var highestGPA = studentGPAs.Max(s => s.GPA);
+        var bestStudents = studentGPAs.Where(s => s.GPA == highestGPA);
+
+        // Формирование выходных данных
+        OutputData outputData = new OutputData
+        {
+            Response = bestStudents.Select(s => new Dictionary<string, object>
+            {
+                { "Cadet", s.Cadet },
+                { "GPA", s.GPA }
+            }).ToList()
+        };
+
+        // Запись выходных данных в файл
+        string outputJson = JsonConvert.SerializeObject(outputData, Formatting.Indented);
+        File.WriteAllText(outputFilePath, outputJson);
+
+        Console.WriteLine("Результат сохранен в файл: " + outputFilePath);
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.IO;
+// Пути к входному и выходному файлам (измените при необходимости)
+        string inputFilePath = "input2.json";
+        string outputFilePath = "output2.json";
+            // Чтение входных данных из файла
+            string inputJson = File.ReadAllText(inputFilePath);
+            InputData inputData = JsonConvert.DeserializeObject<InputData>(inputJson);
+
+            // Вычисление среднего балла для каждой дисциплины
+            var disciplineAverages = inputData.data
+                .GroupBy(s => s.discipline)
+                .Select(g => new Dictionary<string, double>
+                {
+                    { g.Key, g.Average(s => s.mark) }
+                });
+
+            // Формирование выходных данных
+            OutputData outputData = new OutputData
+            {
+                Response = disciplineAverages.ToList()
+            };
+
+            // Запись выходных данных в файл
+            string outputJson = JsonConvert.SerializeObject(outputData, Formatting.Indented);
+            File.WriteAllText(outputFilePath, outputJson);
+
+            Console.WriteLine("Результат сохранен в файл: " + outputFilePath);
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.IO;
+// Пути к входному и выходному файлам (измените при необходимости)
+        string inputFilePath = "input3.json";
+        string outputFilePath = "output3.json";
+            // Чтение входных данных из файла
+            string inputJson = File.ReadAllText(inputFilePath);
+            InputData inputData = JsonConvert.DeserializeObject<InputData>(inputJson);
+
+            // Вычисление среднего балла для каждой группы по каждой дисциплине
+            var groupDisciplineAverages = inputData.data
+                .GroupBy(s => new { s.discipline, s.group })
+                .Select(g => new
+                {
+                    Discipline = g.Key.discipline,
+                    Group = g.Key.group,
+                    GPA = g.Average(s => s.mark)
+                });
+
+            // Выбор групп с наивысшим средним баллом для каждой дисциплины
+            var bestGroups = groupDisciplineAverages
+                .GroupBy(g => g.Discipline)
+                .Select(g => g.OrderByDescending(x => x.GPA).First());
+
+            // Формирование выходных данных
+            OutputData outputData = new OutputData
+            {
+                Response = bestGroups.Select(g => new Dictionary<string, object>
+                {
+                    { "Discipline", g.Discipline },
+                    { "Group", g.Group },
+                    { "GPA", g.GPA }
+                }).ToList()
+            };
+
+            // Запись выходных данных в файл
+            string outputJson = JsonConvert.SerializeObject(outputData, Formatting.Indented);
+            File.WriteAllText(outputFilePath, outputJson);
+
+            Console.WriteLine("Результат сохранен в файл: " + outputFilePath);
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
+using System.IO;
+// Пути к входному и выходному файлам
+        string inputFilePath = "input2.json";
+        string outputFilePath = "output2.json";
+            // Чтение входных данных из файла
+            string inputJson = File.ReadAllText(inputFilePath);
+            InputData inputData = JsonConvert.DeserializeObject<InputData>(inputJson);
+
+            // Вычисление среднего балла для каждой дисциплины
+            var disciplineAverages = inputData.data
+                .GroupBy(s => s.discipline)
+                .Select(g => new Dictionary<string, double>
+                {
+                    { g.Key, g.Average(s => s.mark) }
+                });
+
+            // Формирование выходных данных
+            OutputData outputData = new OutputData
+            {
+                Response = disciplineAverages.ToList()
+            };
+
+            // Запись выходных данных в файл
+            string outputJson = JsonConvert.SerializeObject(outputData, Formatting.Indented);
+            File.WriteAllText(outputFilePath, outputJson);
+
+            Console.WriteLine("Результат сохранен в файл: " + outputFilePath);
