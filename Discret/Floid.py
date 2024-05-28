@@ -15,7 +15,8 @@ def floyd_warshall(graph):
     for k in range(n):
         for i in range(n):
             for j in range(n):
-                matr_of_dist[i][j] = min(matr_of_dist[i][j], matr_of_dist[i][k] + matr_of_dist[k][j])
+                if (matr_of_dist[i][k] + matr_of_dist[k][j])<matr_of_dist[i][j]:
+                    matr_of_dist[i][j] = matr_of_dist[i][k] + matr_of_dist[k][j]
 
     return matr_of_dist
     
