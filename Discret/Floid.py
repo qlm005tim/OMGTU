@@ -4,7 +4,7 @@ def getShortestPath(d,n):
             
             if d[u][v] == float('inf'):
                 print("No path found")# между вершинами u и v нет пути
-    
+                break
             c = u
             while c != v:
                 print('prom',c+1)
