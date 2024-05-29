@@ -3,14 +3,16 @@ def getShortestPath(d,n):
         for v in range(len(d)):
             
             if d[u][v] == float('inf'):
-                print("No path found")# между вершинами u и v нет пути
-                break
+                print("Нет пути между",u+1,v+1)# между вершинами u и v нет пути
+                continue
+            
             c = u
+            print('начало пути',u+1)
             while c != v:
-                print('prom',c+1)
-                if c==float('inf'): print("No path found"); break
+                print('промежуточный пункт',c+1)
+                if c==float('inf'): print("Нет пути"); continue
                 else: c = (n[c][v]-1)#inf porytit what do if next ver not
-            print('kon',v+1)
+            print('конец пути',v+1)
     
     
 def floyd_warshall(graph):
@@ -54,9 +56,14 @@ graph = [
 
             # Вычисление матрицы расстояний
 matr_of_dist, matr_of_nexts = floyd_warshall(graph)
+
+print('Матрица расстояний')
 for strin in matr_of_dist:
     print(strin)
+    
+print('Матрица вершин, в которые нужно дойти')
 for strin in matr_of_nexts:
     print(strin)
     
+print('Пути')  
 getShortestPath(matr_of_dist, matr_of_nexts)
