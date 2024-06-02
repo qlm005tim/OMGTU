@@ -7,8 +7,54 @@
 На основе польской записи программа выполняет вычисления, обработать корректность входа
 Пример польской записи: ab+3* (сначала 2 операнда, потом знак операции)
 """
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+class Program {
+  public static void Main(string[] args) {
+      
+    Console.WriteLine("Введите выражение со скобками: ");
+    string str = Console.ReadLine();
+    
+    char[] brekets = new char[] {'(', ')', '[', ']', '{', '}'};//виды скобок
+
+    Stack<char> stack = new Stack<char>();
+
+    foreach (char c in str) {
+        
+      int index = Array.IndexOf(brekets, c);
+      
+      if (c == '(' || c == '[' || c == '{') {
+        stack.Push(c);
+      } 
+      
+      else if (index != -1) //закрывающая скобка
+      {
+        if (stack.Count > 0 && stack.Peek() == brekets[index - 1])//найдена парная открывающаяся на вершине стека
+        {
+          stack.Pop();
+        } 
+        else {
+          stack.Push(c);
+        }
+      }
+    }
+
+    Console.WriteLine();
+
+    if (stack.Count > 0)//в стеке остались непарные скобки
+    {
+      Console.WriteLine("Скобки расставленны неправильно");
+    } 
+    else {
+      Console.WriteLine("Скобки расставленны правильно");
+    }
+  }
+}
 
 
+                                              
 using System;
 using System.Collections.Generic;
 using System.Text;
