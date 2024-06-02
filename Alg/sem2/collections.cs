@@ -1,3 +1,3 @@
-array
-arraylist
-sortedlist
+методы array
+методы arraylist
+методы sortedlist
