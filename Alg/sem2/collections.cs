@@ -152,3 +152,155 @@ class Program {
 }
 
 
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
+class Program {
+    
+    static void PrintArrayList(ArrayList arrlist)
+    {
+        
+        foreach (double x in arrlist)
+        {
+            Console.WriteLine(x);
+        }
+    }
+    
+    static void Menu()//menu print
+    {
+    Console.WriteLine("menu - вывод меню");
+    Console.WriteLine("end - выход из программы");
+    Console.WriteLine("1 - Count");
+    Console.WriteLine("2 - BinSearch");
+    Console.WriteLine("3 - Copy (output full)");
+    Console.WriteLine("4 - indexOf");
+    Console.WriteLine("5 - Insert");
+    Console.WriteLine("6 - Reverse");
+    Console.WriteLine("7 - Sort");
+    Console.WriteLine("8 -Add");
+  }
+    
+
+    static void Main() {
+    Console.WriteLine("Операции над ArrayList");
+    
+    ArrayList myAL=new ArrayList();
+    Console.WriteLine("введите элемент в ArrayList, ! для завершения ввода");
+    
+    bool i=true;
+    while(i){
+        
+        string n = Console.ReadLine();
+        if (n=="!"){
+            i=false;
+            break;
+        }
+        double num=Convert.ToDouble(n);
+        myAL.Add(num);
+        
+    }
+    
+    //PrintArrayList(myAL);
+    Console.WriteLine("Menu");
+    Menu();
+    
+    bool f = true;
+    while (f) {
+      
+      Console.WriteLine("введите команду из меню: ");
+      string com = Console.ReadLine();
+
+      switch(com) {
+        case "menu":
+          Menu();
+          break;
+        case "end":
+            {
+                f=false;
+            }
+            break;
+        case "1":
+            {
+                Console.WriteLine("длина массива ");
+                int c=myAL.Count;
+                Console.WriteLine(c);
+            }   
+            break;
+        case "2":
+            {
+                var newAL = new ArrayList(myAL);
+                Console.WriteLine("отсортированный ArrayList:");
+                newAL.Sort();
+                PrintArrayList(newAL);
+
+                Console.WriteLine("введите число для бинарного поиска :");
+                double number = Convert.ToDouble(Console.ReadLine());
+                double res = newAL.BinarySearch(number);
+
+                Console.WriteLine("Индекс искомого числа:");
+                Console.WriteLine(res);
+                
+            }
+            break;
+        case "3":
+        {
+            var newAL=new ArrayList(myAL);
+            Console.WriteLine("копия ");
+            PrintArrayList(newAL);
+        }
+        break;
+        case "4":{
+            Console.WriteLine("поиск Индекса данного числа ");
+            Console.WriteLine("введите число ");
+            double n=Convert.ToDouble(Console.ReadLine());
+            double res=myAL.IndexOf(n);
+            Console.WriteLine("индекс");
+            Console.WriteLine(res);
+        }
+        break;
+        case "5":
+        {
+            Console.WriteLine("вчтавить число");
+            Console.WriteLine("введите ind");
+            int ind=Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("введите число");
+            double n=Convert.ToDouble(Console.ReadLine());
+            myAL.Insert(ind,n);
+            
+            Console.WriteLine("с числом");
+            PrintArrayList(myAL);
+        }
+        break;
+        case "6":{
+            Console.WriteLine("перевернутый");
+            myAL.Reverse();
+            PrintArrayList(myAL);
+        }
+        break;
+        case "7":{
+            Console.WriteLine("отсортированный");
+            myAL.Sort();
+            PrintArrayList(myAL);
+        }
+        break;
+        case "8":{
+            Console.WriteLine("введите число для добавления");
+            double n=Convert.ToDouble(Console.ReadLine());
+            myAL.Add(n);
+            
+            PrintArrayList(myAL);
+            
+        }
+        break;
+        
+        default:{
+            Console.WriteLine("нет такого действия");
+        }
+        break;
+    }
+    }
+    }
+}
+
