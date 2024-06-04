@@ -304,3 +304,101 @@ class Program {
     }
 }
 
+using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
+class Program {
+    
+    static void PrintSortedList(SortedList slist)
+    {
+        
+        for (int i=0;i<slist.Count;i++)
+        {
+            Console.WriteLine("Key: {0},\tValue: {1}", slist.GetKey(i), slist.GetByIndex(i));
+        }
+    }
+    
+    static void Menu()//menu print
+    {
+    Console.WriteLine("menu - вывод меню");
+    Console.WriteLine("end - выход из программы");
+    Console.WriteLine("1 - Add");
+    Console.WriteLine("2 - indexOfKey");
+    Console.WriteLine("3 - indexOfValue");
+    
+  }
+    
+
+    static void Main() {
+    Console.WriteLine("Операции над ArrayList");
+    
+    SortedList mySL=new SortedList();
+    Console.WriteLine("Введите количество пар ключ-значение:");
+    int l = Convert.ToInt32(Console.ReadLine());
+    for (int i = 0; i < l; i++){
+        Console.WriteLine("введите key val");
+        double key = Convert.ToDouble(Console.ReadLine());
+        double value = Convert.ToDouble(Console.ReadLine());
+        mySL.Add(key,value);
+    }
+    
+    
+    Console.WriteLine("Menu");
+    Menu();
+    
+    bool f = true;
+    while (f) {
+      
+      Console.WriteLine("введите команду из меню: ");
+      string com = Console.ReadLine();
+
+      switch(com) {
+        case "menu":
+          Menu();
+          break;
+        case "end":
+            {
+                f=false;
+            }
+            break;
+        case "1":
+            {
+                Console.WriteLine("введите key val ");
+                double key = Convert.ToDouble(Console.ReadLine());
+                double value = Convert.ToDouble(Console.ReadLine());
+                mySL.Add(key,value);
+                Console.WriteLine("add");
+                PrintSortedList(mySL);
+            }   
+            break;
+        case "2":
+            {
+                Console.WriteLine("Введите ключ:");
+            double key = Convert.ToDouble(Console.ReadLine());
+            int index = mySL.IndexOfKey(key);
+            Console.WriteLine("Индекс ключа:");
+            Console.WriteLine(index);
+
+            }
+            break;
+        case "3":
+        {
+            Console.WriteLine("Введите значение:");
+            double value = Convert.ToDouble(Console.ReadLine());
+            int index = mySL.IndexOfValue(value);
+            Console.WriteLine("Индекс значения:");
+            Console.WriteLine(index);
+        }
+        break;
+        
+        
+        default:{
+            Console.WriteLine("нет такого действия");
+        }
+        break;
+    }
+    }
+    }
+}
