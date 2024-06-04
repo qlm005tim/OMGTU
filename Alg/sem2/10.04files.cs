@@ -16,7 +16,8 @@ using System.IO;
 
 class Program {
     
-  public static int CompareDates(string s1, string s2) {
+  public static int CompareDates(string s1, string s2) 
+  {
     double date1 = Convert.ToDouble(s1.Split()[0]);//s1-year1 city1 country1
     double date2 = Convert.ToDouble(s2.Split()[0]);
     
