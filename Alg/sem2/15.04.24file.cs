@@ -2,3 +2,50 @@
 //данные в выходном файле тоже должны быть отсортированы, ограничения: нельзя считывать данные в промежуточные списки -> надо брать попеременно.
 
 //дан входной файл состоящий из строк необходимо вывести строку с наименьшей длиной подпоследовательности состоящей из символов а
+using System;
+using System.IO;
+
+class FileMerge
+{
+    static void Main()
+    {
+        // Open input and output files
+        using (StreamReader f1 = new StreamReader("inp1.txt"))//obj of files f1 and f2
+        using (StreamReader f2 = new StreamReader("inp2.txt"))
+        using (StreamWriter f_out = new StreamWriter("output.txt"))
+        {
+            
+            string srt1 = f1.ReadLine();//str from f1
+            string str2 = f2.ReadLine();//str from f2
+
+            // Merge files  брать строки из файлов в алф порядке записывать в выходной файл
+            while (srt1 != null && str2 != null)
+            {
+                if (string.Compare(str1, str2) < 0)
+                {
+                    f_out.WriteLine(str1);
+                    str1 = f1.ReadLine();
+                }
+                else
+                {
+                    f_out.WriteLine(str2);
+                    str2 = f2.ReadLine();
+                }
+            }
+
+            while (str1 != null)
+            {
+                f_out.WriteLine(str1);
+                str1 = f1.ReadLine();
+            }
+
+            while (str2 != null)
+            {
+                f_out.WriteLine(str2);
+                str2 = f2.ReadLine();
+            }
+        }
+    }
+}
+
+
