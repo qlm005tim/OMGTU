@@ -33,7 +33,7 @@ class Program {
 
   public static void Main(string[] args) {
     
-    List<string> f = File.ReadAllLines("./file.txt").ToList();//read file in list with strs 'year city country'
+    List<string> f = File.ReadAllLines("./country.txt").ToList();//read file in list with strs 'year city country'
     
     List<string> f_sortyears = new List<string>(f);//list with sort years copy for sort
     
