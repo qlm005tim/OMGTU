@@ -49,13 +49,14 @@ class FileMerge
 }
 
 
+
 using System;
 using System.IO;
 using System.Linq;
 
 class Program
 {
-    static int GetMinCount(string line)//min len 'a' substring
+    static int GetMinCount_L(string line)//минимальная длина подстроки а в строке
     {
         int count = 0;
         int min_count = int.MaxValue;
@@ -69,7 +70,7 @@ class Program
             
             else
             {
-                if (count > 0 && count < min_count)//obnov min count
+                if (count > 0 && count < min_count)
                 {
                     min_count = count;
                 }
@@ -83,28 +84,30 @@ class Program
     {
         using (StreamReader f = new StreamReader("input.txt"))//fail
         {
-            int min_len = int.MaxValue;//min len substring with a
-            string min_str = "";// str with min 'a' substring
+            int min_len_f = int.MaxValue;//минимальная длина подстроки а во всем файле
+            
+            string min_str_f = "";// str with min 'a' substring по всему файлу
 
             string line;
-            int min_count = int.MaxValue;
+            int min_count_f = int.MaxValue;//минимальная длина подстроки а по всему файлу
             
-            while ((line = f.ReadLine()) != null)
+            while ((line = f.ReadLine()) != null)//чтение строки файла
             {
-                int count = GetMinCount(line);
+                int count = GetMinCount_L(line);//минимальная длина подстроки а по отдельной строке
 
-                if (count > 0 && count < min_count)
+                if (count > 0 && count < min_count_f)
                 {
-                    min_count = count;
+                    min_count_f = count;//
                 }
 
-                if (min_count > 0 && min_count < min_len)
+                if (min_count_f > 0 && min_count_f < min_len_f)// 
                 {
-                    min_len = min_count;
-                    min_str = line;
+                    min_len_f = min_count_f;// мин длина подстроки а в файле и строка из файла с ней обновляется
+                    min_str_f = line;
                 }
             }
-            Console.WriteLine(min_str);
+            
+            Console.WriteLine(min_str_f);
         }
     }
 }
