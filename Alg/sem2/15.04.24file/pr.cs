@@ -15,11 +15,11 @@ class FileMerge
         using (StreamWriter f_out = new StreamWriter("output.txt"))
         {
             
-            string srt1 = f1.ReadLine();//str from f1
+            string str1 = f1.ReadLine();//str from f1
             string str2 = f2.ReadLine();//str from f2
 
             // Merge files  брать строки из файлов в алф порядке записывать в выходной файл
-            while (srt1 != null && str2 != null)
+            while (str1 != null && str2 != null)
             {
                 if (string.Compare(str1, str2) < 0)
                 {
