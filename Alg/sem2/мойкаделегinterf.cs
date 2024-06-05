@@ -1,5 +1,4 @@
-//moyka avto
-//delegates
+
 //interfaces for +-*/ root sin cos 19.03
  
 using System;
@@ -143,6 +142,75 @@ class Interfaces: IMethods
       Console.WriteLine("Результат:");
       
       Console.WriteLine(un(n));
+    }
+  }
+}
+
+//moyka avto
+//delegates
+using System;
+using System.Linq;
+
+class Auto //
+{
+  public bool isWashed = false;
+  public string brand;
+
+  public Auto(string brand) 
+  {
+    this.isWashed = false;
+    this.brand = brand;
+  }
+}
+
+class Garage //
+{
+  public Auto[] automobiles = new Auto[] {};
+
+  public Garage(Auto[] autos) 
+  {
+    this.automobiles = autos;
+  }
+}
+
+class CarWashing //moyka
+{
+  public static void Wash(Auto automobile) 
+  {
+    automobile.isWashed = true;
+  }
+}
+
+
+class Delegates 
+{
+  public delegate void CarFunc(Auto automobile);
+
+  public static void Main(string[] args) 
+  {
+    CarFunc wash = CarWashing.Wash;
+
+    Garage garage = new Garage(new Auto[] {
+        new Auto("Mersedes"),
+        new Auto("Bmw"),
+        new Auto("Lada")
+      });
+
+    foreach (var auto in garage.automobiles) 
+    {
+      Console.WriteLine($"{auto.brand}: мытая? {auto.isWashed}");
+    }
+
+    Console.WriteLine("На мойку");
+
+    foreach (var auto in garage.automobiles) 
+    {
+      wash(auto);
+    }
+
+    foreach (var auto in garage.automobiles) 
+    {
+      Console.WriteLine($"{auto.brand}: мытая? {auto.isWashed}");
     }
   }
 }
