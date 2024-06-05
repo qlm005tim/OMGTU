@@ -24,7 +24,6 @@ public class EmpInform
     public decimal Price { get; set; }
 }
 
-
 class Program
 {
     static void Main()
@@ -50,7 +49,6 @@ class Program
             Console.WriteLine($"Категория {item.Category}: {item.Quantity} шт. ({item.Totalprice})");
         }
         Console.WriteLine();
-
         decimal totalQuantitylprod = empinforms.Sum(p => p.Quantity);
         decimal totalProductprice = empinforms.Sum(p => p.Quantity * p.Price);
         Console.WriteLine("Общий суммарный объём произведённой продукции:");
@@ -60,6 +58,6 @@ class Program
 
         int empWithProfitmore = empinforms
             .Count(p => p.Profit > p.Quantity * p.Price * 0.5m);
-        Console.WriteLine($"Кол-во сотрудников, получающих > 50% от суммы производимого ими продукта: {empWithProfitmore}");
+        Console.WriteLine($"Кол-во сотрудников, получающих зп > 50% от суммы производимого ими продукта: {empWithProfitmore}");
     }
 }
