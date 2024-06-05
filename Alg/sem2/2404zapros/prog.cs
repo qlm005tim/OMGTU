@@ -10,7 +10,7 @@ class Program
 {
     static void Main()
     {
-        string fPath = "input.txt";
+        string fPath = "inp.txt";
         
         string f = File.ReadAllText(fPath);//read file in one string
         
