@@ -22,7 +22,6 @@ public class Product
     public string Sklad { get; set; }
 }
 
-
 class Program
 {
     static void Main()
