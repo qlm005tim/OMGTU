@@ -10,22 +10,22 @@ def v(graph):
             v.append(x[2])
     return v
     
-def msm(graph):
-    ver=v(graph)
-    cver=len(ver)
+def mst(graph):
+    vers=v(graph)
     
-    sm={verr:[] for verr in ver}
+    st={verr:[] for verr in vers}
     for i in range(len(graph)):
         wt, x1, y1=graph[i]
-        sm[x1].append([wt,y1])
-        sm[y1].append([wt,x1])
-    return sm
+        st[x1].append([wt,y1])
+        st[y1].append([wt,x1])
+    return st
                 
 def prim(graph):
-    sm=msm(graph)
+    sm=mst(graph)
     cver=len(v(graph))
 
     res=0
+    mod=[]
     visited=set()
     minheap=[[0,graph[0][1]]]
     
@@ -34,10 +34,15 @@ def prim(graph):
         if x in visited:
                 continue
         res+=cost
+        
         visited.add(x)
+        
         for neighbourcost, neighbour in sm[x]:
             if neighbour not in visited:
                 heapq.heappush(minheap, [neighbourcost, neighbour])
-    return res
+                mod.append([x, neighbour])
+    return res,mod
     
-print(prim(graph))
+res,mod=prim(graph)
+print(res)
+print(mod)
