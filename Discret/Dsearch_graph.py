@@ -1,8 +1,11 @@
+#deep search
 graph = [
         [1, 2],
+        
         [3, 4],
         [3, 5],
         [4, 5],
+        
         [6, 7],
         [6, 8],
         [7, 9],
@@ -49,4 +52,5 @@ def Components(graph):
         graph_copy = [ver for ver in graph_copy if ver[0] not in componentNow and ver[1] not in componentNow]
 
     return components
+    
 print(Components(graph))
