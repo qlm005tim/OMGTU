@@ -30,38 +30,38 @@ def Vers(graph):
 def Components(graph):
     components = [set()]
 
-    vacant = Vers(graph)
+    free = Vers(graph)
 
     components[0].add(graph[0][0])
     components[0].add(graph[0][1])
 
-    vacant.remove(graph[0][0])
-    vacant.remove(graph[0][1])
+    free.remove(graph[0][0])
+    free.remove(graph[0][1])
 
-    while len(vacant) > 0:
-        for node in graph:
+    while len(free) > 0:
+        for x in graph:
             for i in range(len(components)):
                 comp = components[i]
-                if node[0] in comp or node[1] in comp:
-                    comp.add(node[0])
-                    comp.add(node[1])
+                if x[0] in comp or x[1] in comp:
+                    comp.add(x[0])
+                    comp.add(x[1])
 
-                    if node[0] in vacant:
-                        vacant.remove(node[0])
-                    if node[1] in vacant:
-                        vacant.remove(node[1])
+                    if x[0] in free:
+                        free.remove(x[0])
+                    if x[1] in free:
+                        free.remove(x[1])
 
                 else:
                     if i == len(components) - 1:
                         c = set()
-                        c.add(node[0])
-                        c.add(node[1])
+                        c.add(x[0])
+                        c.add(x[1])
                         components.append(c)
 
-                    if node[0] in vacant:
-                        vacant.remove(node[0])
-                    if node[1] in vacant:
-                        vacant.remove(node[1])
+                    if x[0] in free:
+                        free.remove(x[0])
+                    if x[1] in free:
+                        free.remove(x[1])
 
     return components
 
