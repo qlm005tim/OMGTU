@@ -1,4 +1,4 @@
-f = open('OLYMP\Tau\input_s1_01.txt')
+f = open('input_s1_01.txt')
 
 input_str = f.readline()
 f.close()
